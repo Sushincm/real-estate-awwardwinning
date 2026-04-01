@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { X } from 'lucide-react';
 
-const VideoModal = ({ isOpen, onClose, videoUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ" }) => {
+const VideoModal = ({ isOpen, onClose, videoUrl = "https://www.youtube.com/embed/bL_vL_W0Y-k" }) => {
   const modalRef = useRef(null);
   const backdropRef = useRef(null);
   const contentRef = useRef(null);
@@ -35,25 +35,25 @@ const VideoModal = ({ isOpen, onClose, videoUrl = "https://www.youtube.com/embed
   return (
     <div 
       ref={modalRef} 
-      className="fixed inset-0 z-[100] hidden items-center justify-center p-4 lg:p-10"
+      className="fixed inset-0 z-[9999] hidden items-center justify-center p-8 lg:p-20"
     >
-      {/* Backdrop */}
+      {/* Backdrop - 100% Fit Screen Cinema Tint */}
       <div 
         ref={backdropRef}
-        className="absolute inset-0 bg-black/90 backdrop-blur-sm cursor-pointer" 
+        className="absolute inset-0 bg-black/95 backdrop-blur-md cursor-pointer" 
         onClick={onClose}
       />
 
-      {/* Content Container - Expanded to full view width as requested */}
+      {/* Content Container - Centered with more space around it */}
       <div 
         ref={contentRef}
-        className="relative w-[95vw] lg:w-[90vw] max-w-[1400px] aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl z-10"
+        className="relative w-[85vw] max-w-[1100px] aspect-video bg-black rounded-3xl overflow-hidden shadow-[0_0_100px_rgba(34,197,94,0.15)] z-10"
       >
         <button 
           onClick={onClose}
-          className="absolute top-6 right-6 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-all z-20 group"
+          className="absolute top-8 right-8 w-14 h-14 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-all z-20 group"
         >
-          <X className="w-6 h-6 group-hover:rotate-90 transition-transform" />
+          <X className="w-8 h-8 group-hover:rotate-90 transition-transform" />
         </button>
 
         <iframe 

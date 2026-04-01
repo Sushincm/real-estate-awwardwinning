@@ -150,10 +150,6 @@ const TestimonialV2 = () => {
         className="container px-8 lg:px-24 z-10 mx-auto relative"
       >
         <div className="flex flex-col items-center justify-center max-w-[700px] mx-auto mb-20">
-            <div className="flex justify-center mb-6">
-                <span className="bg-white/5 backdrop-blur-md px-5 py-2 rounded-xl text-[10px] font-black tracking-[0.2em] text-[#22C55E] shadow-xl uppercase border border-white/5">TESTIMONIALS</span>
-            </div>
-
           <h2 id="testimonials-heading" className="text-4xl md:text-[4rem] font-medium tracking-tight text-center text-white leading-tight">
             What our homeowners<br/>have to say
           </h2>

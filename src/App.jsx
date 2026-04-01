@@ -8,11 +8,14 @@ import FAQSection from './components/ui/FAQSection';
 import TestimonialV2 from './components/ui/testimonial-v2';
 import CTASection from './components/ui/CTASection';
 import Footer from './components/ui/Footer';
+import VideoModal from './components/ui/VideoModal';
 import ScrollToTop from './components/ui/ScrollToTop';
 import SmoothScroll from './components/ui/SmoothScroll';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
   // Global Image Preloading and Reveal System
   useEffect(() => {
     const imagesToPreload = [
@@ -69,7 +72,7 @@ function App() {
 
             {/* SECTION 03: Property Showcase Carousel */}
             <div className="reveal-up bg-white">
-                <PropertyShowcase />
+                <PropertyShowcase onPlayVideo={() => setIsVideoOpen(true)} />
             </div>
 
             {/* SECTION 04: Key Metrics */}
@@ -107,6 +110,11 @@ function App() {
 
             {/* Global UI Overlays */}
             <ScrollToTop />
+            <VideoModal 
+                isOpen={isVideoOpen} 
+                onClose={() => setIsVideoOpen(false)} 
+                videoUrl="https://www.youtube.com/embed/bL_vL_W0Y-k"
+            />
           </div>
         </div>
       </main>

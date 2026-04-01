@@ -42,6 +42,7 @@ const HeroOverlay = ({ isRevealed, activeContentIndex }) => {
       
       {/* Cinematic Black Tint Overlay */}
       <div id="black-tint" className="absolute inset-0 bg-black/40 pointer-events-none opacity-[0.2]" />
+      <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black/50 to-transparent pointer-events-none z-10" />
 
       <Navbar />
 
