@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital,wght@0,400;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ever-lime: #B6EB7A;
+  --ever-blue: #0A0A0A;
+  background-color: #fff;
+  color: #000;
+  font-family: 'Instrument Sans', 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: white;
+}
+
+canvas {
+  touch-action: none;
+}
+
+/* Custom styles for the headline reveal */
+.headline-word-inner {
+  will-change: transform;
+}
+
+#navbar, #search-bar, .tag-pill, #hero-subtext {
+  will-change: opacity, transform;
+}
+
+/* Lenis smooth scroll adjustments */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Swiper Smooth Transition */
+.swiper-wrapper {
+  transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1) !important; /* Premium Ease-in-out */
+}
+
+.swiper-slide {
+  transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1) !important;
+}
+
+/* Modern Reveal Base Classes */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(40px) translateZ(0);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.reveal-up.active {
+  opacity: 1;
+  transform: translateY(0) translateZ(0);
+}
+
+.reveal-mask {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: clip-path;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.reveal-mask.active,
+.active .reveal-mask {
+  clip-path: inset(0 0 0% 0);
+}
+
+.image-reveal-scale {
+  transform: scale(1.15);
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.reveal-mask.active .image-reveal-scale,
+.active .image-reveal-scale {
+  transform: scale(1);
+}
