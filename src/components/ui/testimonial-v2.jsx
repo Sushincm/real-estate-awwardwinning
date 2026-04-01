@@ -4,58 +4,58 @@ import { Quote } from 'lucide-react';
 
 const testimonials = [
   {
-    text: "This ERP revolutionized our operations, streamlining finance and inventory. The cloud-based platform keeps us productive, even remotely.",
+    text: "EverGreen helped us find our dream home in Manhattan. The process was seamless and the cinematic tours they provided were a complete game changer for us.",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150",
     name: "Briana Patton",
-    role: "Operations Manager",
+    role: "Manhattan Homeowner",
   },
   {
-    text: "Implementing this ERP was smooth and quick. The customizable, user-friendly interface made team training effortless.",
+    text: "As an international investor, I appreciate the deep market insights and the curated selection of premium properties. They made cross-border buying effortless.",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150",
     name: "Bilal Ahmed",
-    role: "IT Manager",
+    role: "Global Property Investor",
   },
   {
-    text: "The support team is exceptional, guiding us through setup and providing ongoing assistance, ensuring our satisfaction.",
+    text: "The attention to detail in their listings is unmatched. We found a villa in Austin that exceeded all our expectations, thanks to their expert guidance.",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150&h=150",
     name: "Saman Malik",
-    role: "Customer Support Lead",
+    role: "Austin Homeowner",
   },
   {
-    text: "This ERP's seamless integration enhanced our business operations and efficiency. Highly recommend for its intuitive interface.",
+    text: "Their team understands luxury. From the first consultation to the final closing, every step was handled with the utmost professionalism and care.",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150",
     name: "Omar Raza",
-    role: "CEO",
+    role: "Portfolio Manager",
   },
   {
-    text: "Its robust features and quick support have transformed our workflow, making us significantly more efficient.",
+    text: "Finding a modern sanctuary in a busy city is tough, but EverGreen made it look easy. We are absolutely in love with our new urban apartment.",
     image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150&h=150",
     name: "Zainab Hussain",
-    role: "Project Manager",
+    role: "Tech Executive",
   },
   {
-    text: "The smooth implementation exceeded expectations. It streamlined processes, improving overall business performance.",
+    text: "The smooth implementation of our property search exceeded expectations. They understood our lifestyle needs and found the perfect match in weeks.",
     image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=150&h=150",
     name: "Aliza Khan",
-    role: "Business Analyst",
+    role: "Business Owner",
   },
   {
-    text: "Our business functions improved with a user-friendly design and positive customer feedback.",
+    text: "Our family's living experience improved significantly after moving into the house EverGreen recommended. Truly a five-star service.",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150&h=150",
     name: "Farhan Siddiqui",
-    role: "Marketing Director",
+    role: "Creative Director",
   },
   {
-    text: "They delivered a solution that exceeded expectations, understanding our needs and enhancing our operations.",
+    text: "They delivered a residential solution that exceeded expectations. They truly understand what 'Quiet Luxury' means in today's market.",
     image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150&h=150",
     name: "Sana Sheikh",
-    role: "Sales Manager",
+    role: "Interior Designer",
   },
   {
-    text: "Using this ERP, our online presence and conversions significantly improved, boosting business performance.",
+    text: "Using their platform, our property search was focused and efficient. We secured a prime location listing before it even hit the public market.",
     image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=150&h=150",
     name: "Hassan Ali",
-    role: "E-commerce Manager",
+    role: "Real Estate Attorney",
   },
 ];
 
@@ -154,7 +154,7 @@ const TestimonialV2 = () => {
             What our homeowners<br/>have to say
           </h2>
           <p className="text-center mt-8 text-neutral-400 text-lg leading-relaxed max-w-lg transition-colors font-medium">
-            Discover how thousands of teams streamline their operations with our platform.
+            Discover why thousands of homeowners trust EverGreen to find their perfect sanctuary and investment properties.
           </p>
         </div>
 
