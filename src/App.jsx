@@ -4,6 +4,7 @@ import PropertyShowcase from './components/Hero/PropertyShowcase';
 import StatsSection from './components/ui/StatsSection';
 import MapSection from './components/ui/MapSection';
 import PropertyList from './components/ui/PropertyList';
+import FAQSection from './components/ui/FAQSection';
 import ScrollToTop from './components/ui/ScrollToTop';
 import SmoothScroll from './components/ui/SmoothScroll';
 import { useEffect } from 'react';
@@ -13,11 +14,7 @@ function App() {
   useEffect(() => {
     const imagesToPreload = [
       '/showcase/main.png',
-      '/showcase/thumb.png',
-      'https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2070',
-      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075',
-      'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=1984',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070'
+      '/showcase/thumb.png'
     ];
 
     imagesToPreload.forEach(imageSrc => {
@@ -87,6 +84,11 @@ function App() {
             {/* SECTION 06: Premier Properties Grid */}
             <div className="reveal-up bg-white">
                <PropertyList />
+            </div>
+
+            {/* SECTION 07: Frequently Asked Questions */}
+            <div className="reveal-up bg-white">
+               <FAQSection />
             </div>
 
             {/* Global UI Overlays */}
