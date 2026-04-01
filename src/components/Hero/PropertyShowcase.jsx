@@ -13,13 +13,13 @@ const PropertyShowcase = ({ onPlayVideo }) => {
     return (
         <section className="bg-white pt-0 pb-20 px-10 lg:px-20 overflow-hidden font-sans relative">
             {/* Header Row */}
-            <div className="flex flex-col lg:flex-row justify-between items-end mb-24 gap-12">
+            <div className="flex flex-col lg:flex-row justify-between items-end mb-24 gap-12 reveal-up">
                 <h2 className="text-3xl lg:text-[3.5rem] font-medium text-black leading-[1.05] tracking-tight max-w-[800px]">
                     Your primary home might begin to feel left out.
                 </h2>
                 
                 {/* Right Video Content */}
-                <div className="flex flex-col gap-6 lg:items-end">
+                <div className="flex flex-col gap-6 lg:items-end reveal-up stagger-delay-1">
                     <div 
                         onClick={onPlayVideo}
                         className="relative w-40 h-24 rounded-2xl overflow-hidden shadow-2xl group cursor-pointer transition-transform hover:scale-105 active:scale-95 isolate transform-gpu backface-hidden"
@@ -39,7 +39,7 @@ const PropertyShowcase = ({ onPlayVideo }) => {
             </div>
 
             {/* Swiper Carousel - Upgraded for Infinite 'Owl Carousel' Style Loop */}
-            <div className="relative group">
+            <div className="relative group reveal-up stagger-delay-2">
                 <Swiper
                     modules={[Navigation, Autoplay]}
                     loop={true}

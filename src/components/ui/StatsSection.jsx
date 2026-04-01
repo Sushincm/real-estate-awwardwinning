@@ -45,19 +45,27 @@ const StatsSection = () => {
         <section className="bg-white pt-0 pb-32 px-12 lg:px-24">
             <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-16 lg:gap-8">
                 
-                <StatItem endValue="100" suffix="%" label="Satisfactions Clients" />
+                <div className="reveal-up" style={{ transitionDelay: '100ms' }}>
+                    <StatItem endValue="100" suffix="%" label="Satisfactions Clients" />
+                </div>
                 
                 <div className="hidden lg:block w-px h-24 bg-black/10" />
                 
-                <StatItem endValue="500" suffix="+" label="Property sells" />
+                <div className="reveal-up" style={{ transitionDelay: '200ms' }}>
+                    <StatItem endValue="500" suffix="+" label="Property sells" />
+                </div>
                 
                 <div className="hidden lg:block w-px h-24 bg-black/10" />
                 
-                <StatItem endValue="150" suffix="+" label="Countries & Cities" />
+                <div className="reveal-up" style={{ transitionDelay: '300ms' }}>
+                    <StatItem endValue="150" suffix="+" label="Countries & Cities" />
+                </div>
                 
                 <div className="hidden lg:block w-px h-24 bg-black/10" />
                 
-                <StatItem endValue="2000" suffix="+" label="Positive reviews" />
+                <div className="reveal-up" style={{ transitionDelay: '400ms' }}>
+                    <StatItem endValue="2000" suffix="+" label="Positive reviews" />
+                </div>
                 
             </div>
         </section>

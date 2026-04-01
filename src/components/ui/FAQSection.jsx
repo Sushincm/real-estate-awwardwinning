@@ -119,12 +119,13 @@ const FAQSection = () => {
                 {/* FAQ List */}
                 <div className="flex flex-col gap-6">
                     {faqs.map((faq, index) => (
-                        <FAQItem 
-                            key={index} 
-                            {...faq} 
-                            isOpen={activeIndex === index}
-                            onClick={() => setActiveIndex(activeIndex === index ? -1 : index)}
-                        />
+                        <div key={index} className="reveal-up" style={{ transitionDelay: `${index * 100}ms` }}>
+                            <FAQItem 
+                                {...faq} 
+                                isOpen={activeIndex === index}
+                                onClick={() => setActiveIndex(activeIndex === index ? -1 : index)}
+                            />
+                        </div>
                     ))}
                 </div>
 

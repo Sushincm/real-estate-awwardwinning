@@ -36,12 +36,12 @@ const SearchBar = () => {
   return (
     <div id="search-bar" ref={dropdownRef} className="bg-white rounded-3xl shadow-[0_45px_100px_-15px_rgba(0,0,0,0.1)] p-10 lg:p-14 flex flex-col gap-10">
       {/* Title */}
-      <h2 className="text-3xl lg:text-[3.5rem] font-medium text-black leading-[1.05] tracking-tight">Find the best place</h2>
+      <h2 className="text-3xl lg:text-[3.5rem] font-medium text-black leading-[1.05] tracking-tight reveal-up">Find the best place</h2>
       
       {/* Inputs Grid */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {/* Looking for - Real Input */}
-        <div className="flex flex-col gap-3 group px-1">
+        <div className="flex flex-col gap-3 group px-1 reveal-up stagger-delay-1">
           <label className="text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] group-focus-within:text-black transition-colors">Looking for</label>
           <div className="bg-[#F3F4F6] px-6 py-[1.125rem] rounded-2xl flex items-center border border-transparent focus-within:border-gray-200 focus-within:bg-white transition-all duration-300">
             <input 
@@ -57,8 +57,8 @@ const SearchBar = () => {
           { id: 'price', label: 'Price', value: selections.price, icon: DollarSign, options: SEARCH_OPTIONS.prices },
           { id: 'location', label: 'Locations', value: selections.location, icon: MapPin, options: SEARCH_OPTIONS.locations },
           { id: 'rooms', label: 'Number of rooms', value: selections.rooms, icon: BedDouble, options: SEARCH_OPTIONS.rooms },
-        ].map((field) => (
-          <div key={field.id} className="flex flex-col gap-3 relative">
+        ].map((field, i) => (
+          <div key={field.id} className={`flex flex-col gap-3 relative reveal-up stagger-delay-${i + 2}`}>
             <label className="text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] px-1">{field.label}</label>
             <button 
                 onClick={() => toggleDropdown(field.id)}
@@ -89,7 +89,7 @@ const SearchBar = () => {
       </div>
 
       {/* Row: Filters and CTA */}
-      <div className="flex flex-col md:flex-row justify-between items-center pt-2 gap-6">
+      <div className="flex flex-col md:flex-row justify-between items-center pt-2 gap-6 reveal-up stagger-delay-5">
         <div className="flex items-center gap-5">
           <span className="text-[11px] font-bold text-black uppercase tracking-[0.2em]">Filter:</span>
           <div className="flex gap-2">

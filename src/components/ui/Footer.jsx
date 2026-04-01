@@ -9,12 +9,12 @@ const Footer = () => {
             <div className="max-w-7xl mx-auto flex flex-col gap-24">
                 
                 {/* Top Section: Heading and Contact Info */}
-                <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:items-center">
+                <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:items-center reveal-up">
                     <h2 className="text-3xl lg:text-[4.5rem] font-medium text-black leading-[1.05] tracking-tight max-w-[800px]">
                         Discover Nature's <span className="text-gray-400 font-light">Wonders</span><br/>With Expert Guidance
                     </h2>
                     
-                    <div className="flex flex-col gap-4 text-right items-end">
+                    <div className="flex flex-col gap-4 text-right items-end reveal-up stagger-delay-1">
                         <p className="text-neutral-600 text-[15px] font-medium leading-relaxed max-w-[240px]">
                             789 Luxe Boulevard, Diamond Heights, New York 10012.
                         </p>
@@ -25,7 +25,7 @@ const Footer = () => {
                 </div>
 
                 {/* Middle Section: Navigation Bar (Enhanced Border Visibility) */}
-                <div className="py-12 border-y border-black/20 flex flex-col lg:flex-row justify-between items-center gap-10">
+                <div className="py-12 border-y border-black/20 flex flex-col lg:flex-row justify-between items-center gap-10 reveal-up stagger-delay-2">
                     <div className="flex gap-10">
                         {leftLinks.map((link) => (
                             <a 
@@ -58,7 +58,7 @@ const Footer = () => {
                 </div>
 
                 {/* Bottom Section: Copyright and Legal */}
-                <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div className="flex flex-col md:flex-row justify-between items-center gap-6 reveal-up stagger-delay-3">
                     <p className="text-neutral-400 text-[13px] font-medium">
                         © 2026 EverGreen. All rights reserved.
                     </p>

@@ -8,25 +8,11 @@ const HeroOverlay = ({ isRevealed, activeContentIndex }) => {
   const [content, setContent] = useState(FRAME_CONTENT[0]);
   const contentRef = useRef(null);
 
-  // Crossfade content dynamically when activeContentIndex changes during scroll
+  // Content is now updated instantly when activeContentIndex changes.
+  // The actual fade in/out is perfectly synced to the scroll position directly via DOM manipulation in useScrollCanvas.
   useEffect(() => {
-    const newContent = FRAME_CONTENT[activeContentIndex] || FRAME_CONTENT[0];
-    if (content.headline === newContent.headline) return;
-
-    gsap.to(contentRef.current, {
-        opacity: 0,
-        y: 20,
-        duration: 0.4,
-        ease: "power2.in",
-        onComplete: () => {
-            setContent(newContent);
-            gsap.fromTo(contentRef.current, 
-                { opacity: 0, y: -20 },
-                { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
-            );
-        }
-    });
-  }, [activeContentIndex, content.headline]);
+      setContent(FRAME_CONTENT[activeContentIndex] || FRAME_CONTENT[0]);
+  }, [activeContentIndex]);
 
   // Reveal final UI elements (tint) when reaching threshold
   useEffect(() => {
@@ -49,7 +35,7 @@ const HeroOverlay = ({ isRevealed, activeContentIndex }) => {
       <div className="flex flex-col h-full justify-end relative z-10" >
         
         {/* Dynamic Content Container */}
-        <div ref={contentRef} className="w-full grid grid-cols-12 gap-8 items-end mb-6">
+        <div id="hero-dynamic-content" ref={contentRef} className="w-full grid grid-cols-12 gap-8 items-end mb-6 will-change-transform will-change-opacity">
             <div className="col-span-12 lg:col-span-9 relative">
                 
                 {/* Tags */}

@@ -70,11 +70,11 @@ html.lenis, html.lenis body {
   transition-timing-function: cubic-bezier(0.65, 0, 0.35, 1) !important;
 }
 
-/* Modern Reveal Base Classes */
+/* Award Winning Reveal Base Classes */
 .reveal-up {
   opacity: 0;
-  transform: translateY(40px) translateZ(0);
-  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(60px) translateZ(0); /* Deeper drop for more drama */
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
@@ -87,7 +87,7 @@ html.lenis, html.lenis body {
 
 .reveal-mask {
   clip-path: inset(0 0 100% 0);
-  transition: clip-path 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: clip-path 1.8s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: clip-path;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
@@ -99,8 +99,8 @@ html.lenis, html.lenis body {
 }
 
 .image-reveal-scale {
-  transform: scale(1.15);
-  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(1.2); /* More pronounced initial scale */
+  transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
 
@@ -108,3 +108,10 @@ html.lenis, html.lenis body {
 .active .image-reveal-scale {
   transform: scale(1);
 }
+
+/* Stagger Utility */
+.stagger-delay-1 { transition-delay: 100ms; }
+.stagger-delay-2 { transition-delay: 200ms; }
+.stagger-delay-3 { transition-delay: 300ms; }
+.stagger-delay-4 { transition-delay: 400ms; }
+.stagger-delay-5 { transition-delay: 500ms; }

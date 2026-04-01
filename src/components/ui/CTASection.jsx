@@ -24,7 +24,7 @@ const CTASection = () => {
 
             {/* Content Container */}
             <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center gap-10">
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-6 reveal-up">
                     <h2 className="text-3xl lg:text-[3.5rem] font-medium text-white leading-[1.1] tracking-tight drop-shadow-2xl">
                         Ready to Make Your<br/>Dream Property a Reality?
                     </h2>
@@ -33,10 +33,12 @@ const CTASection = () => {
                     </p>
                 </div>
 
-                <button className="bg-white text-black h-[54px] px-10 rounded-2xl font-bold text-[12px] tracking-[0.2em] uppercase flex items-center gap-4 transition-all duration-500 hover:bg-[#22C55E] hover:text-white hover:scale-105 active:scale-95 group shadow-2xl">
-                    Get Started
-                    <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-2" />
-                </button>
+                <div className="reveal-up stagger-delay-2">
+                    <button className="bg-white text-black h-[54px] px-10 rounded-2xl font-bold text-[12px] tracking-[0.2em] uppercase flex items-center gap-4 transition-all duration-500 hover:bg-[#22C55E] hover:text-white hover:scale-105 active:scale-95 group shadow-2xl">
+                        Get Started
+                        <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-2" />
+                    </button>
+                </div>
             </div>
         </section>
     );

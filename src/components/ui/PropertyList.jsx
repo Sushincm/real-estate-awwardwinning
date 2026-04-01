@@ -78,7 +78,7 @@ const PropertyList = () => {
                 {/* Properties Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-20">
                     {properties.map((prop, index) => (
-                        <div key={index}>
+                        <div key={index} className="reveal-up" style={{ transitionDelay: `${index * 100}ms` }}>
                             <PropertyCard {...prop} />
                         </div>
                     ))}
