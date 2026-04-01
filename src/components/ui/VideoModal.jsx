@@ -47,7 +47,7 @@ const VideoModal = ({ isOpen, onClose, videoUrl = "https://www.youtube.com/embed
       {/* Content Container - Expanded to full view width as requested */}
       <div 
         ref={contentRef}
-        className="relative w-[95vw] lg:w-[90vw] max-w-[1400px] aspect-video bg-black rounded-[2rem] overflow-hidden shadow-2xl z-10"
+        className="relative w-[95vw] lg:w-[90vw] max-w-[1400px] aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl z-10"
       >
         <button 
           onClick={onClose}

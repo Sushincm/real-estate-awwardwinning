@@ -12,21 +12,21 @@ const Navbar = () => {
       </div>
       
       {/* Centered nav pill */}
-      <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-1 bg-white/10 backdrop-blur-md px-2 py-1.5 rounded-full pointer-events-auto border border-white/10 shadow-2xl">
-        <button className="bg-black text-white px-6 py-2 rounded-full text-sm font-bold tracking-tight transition-all duration-300 hover:bg-[#22C55E] hover:scale-[1.05] active:scale-95 shadow-lg">Home</button>
-        <button className="text-white/80 px-6 py-2 rounded-full text-sm font-medium hover:text-white hover:bg-white/10 transition-all duration-300 active:scale-95">About Us</button>
-        <button className="text-white/80 px-6 py-2 rounded-full text-sm font-medium hover:text-white hover:bg-white/10 transition-all duration-300 active:scale-95">Property List</button>
-        <button className="text-white/80 px-6 py-2 rounded-full text-sm font-medium hover:text-white hover:bg-white/10 transition-all duration-300 active:scale-95">Contact Us</button>
+      <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-1 bg-white/10 backdrop-blur-md px-2 py-1.5 rounded-2xl pointer-events-auto border border-white/10 shadow-2xl">
+        <button className="bg-black text-white px-6 py-2 rounded-xl text-sm font-bold tracking-tight transition-all duration-300 hover:bg-[#22C55E] hover:scale-[1.05] active:scale-95 shadow-lg">Home</button>
+        <button className="text-white/80 px-6 py-2 rounded-xl text-sm font-medium hover:text-white hover:bg-white/10 transition-all duration-300 active:scale-95">About Us</button>
+        <button className="text-white/80 px-6 py-2 rounded-xl text-sm font-medium hover:text-white hover:bg-white/10 transition-all duration-300 active:scale-95">Property List</button>
+        <button className="text-white/80 px-6 py-2 rounded-xl text-sm font-medium hover:text-white hover:bg-white/10 transition-all duration-300 active:scale-95">Contact Us</button>
       </div>
 
       {/* Right side controls */}
       <div className="flex gap-6 items-center pointer-events-auto">
-        <button className="flex items-center gap-2 text-white/90 text-sm font-semibold bg-white/10 px-4 py-2 rounded-full border border-white/10 transition-all duration-300 hover:bg-white/20 hover:scale-105 active:scale-95">
+        <button className="flex items-center gap-2 text-white/90 text-sm font-semibold bg-white/10 px-4 py-2 rounded-xl border border-white/10 transition-all duration-300 hover:bg-white/20 hover:scale-105 active:scale-95">
           <Globe className="w-4 h-4" />
           <span>Eng</span>
           <ChevronDown className="w-4 h-4" />
         </button>
-        <button className="bg-[#22C55E] text-white px-8 h-[54px] rounded-full text-[12px] font-bold transition-all duration-500 hover:bg-black hover:scale-[1.05] active:scale-95 uppercase tracking-[0.2em]">
+        <button className="bg-[#22C55E] text-white px-8 h-[54px] rounded-2xl text-[12px] font-bold transition-all duration-500 hover:bg-black hover:scale-[1.05] active:scale-95 uppercase tracking-[0.2em]">
           Sign Up
         </button>
       </div>

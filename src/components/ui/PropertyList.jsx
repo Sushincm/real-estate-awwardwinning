@@ -6,7 +6,7 @@ const PropertyCard = ({ image, name, price, address, beds, baths }) => {
         <div className="flex flex-col gap-6 group cursor-pointer will-change-transform">
             {/* Robust Image Container - Solving border-radius glitch with transform-gpu and mask-image */}
             <div 
-                className="relative aspect-[4/3] rounded-[2.5rem] overflow-hidden bg-gray-100 shadow-sm transition-all duration-700 hover:shadow-2xl hover:scale-[1.02] transform-gpu isolate backface-hidden"
+                className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gray-100 shadow-sm transition-all duration-700 hover:shadow-2xl hover:scale-[1.02] transform-gpu isolate backface-hidden"
                 style={{ maskImage: 'radial-gradient(white, black)', WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
             >
                 <img 
@@ -15,7 +15,7 @@ const PropertyCard = ({ image, name, price, address, beds, baths }) => {
                     className="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110 will-change-transform transform-gpu" 
                 />
                 <div className="absolute top-6 left-6">
-                    <span className="bg-white/95 backdrop-blur-md px-5 py-2 rounded-full text-[10px] font-black tracking-[0.1em] text-black shadow-md uppercase">FOR SALE</span>
+                    <span className="bg-white/95 backdrop-blur-md px-4 py-2 rounded-xl text-[10px] font-black tracking-[0.1em] text-black shadow-md uppercase">FOR SALE</span>
                 </div>
             </div>
             
@@ -55,7 +55,7 @@ const PropertyList = () => {
     ];
 
     return (
-        <section className="bg-white pt-10 pb-32 px-12 lg:px-24 rounded-t-[5rem] lg:rounded-t-[7rem] relative z-30 -mt-20">
+        <section className="bg-white pt-10 pb-32 px-12 lg:px-24 rounded-t-[2.5rem] lg:rounded-t-[3rem] relative z-30 -mt-16">
             <div className="max-w-7xl mx-auto flex flex-col gap-24">
                 
                 {/* Header Row */}
@@ -69,7 +69,7 @@ const PropertyList = () => {
                         </p>
                     </div>
                     
-                    <button className="h-[54px] px-10 bg-black text-white rounded-full font-bold text-[12px] tracking-[0.2em] uppercase flex items-center gap-4 transition-all duration-500 hover:bg-[#22C55E] hover:scale-105 active:scale-95 group">
+                    <button className="h-[54px] px-10 bg-black text-white rounded-2xl font-bold text-[12px] tracking-[0.2em] uppercase flex items-center gap-4 transition-all duration-500 hover:bg-[#22C55E] hover:scale-105 active:scale-95 group">
                         See All Properties
                         <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                     </button>

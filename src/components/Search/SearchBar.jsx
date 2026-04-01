@@ -34,7 +34,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div id="search-bar" ref={dropdownRef} className="bg-white rounded-[2.5rem] shadow-[0_45px_100px_-15px_rgba(0,0,0,0.1)] p-10 lg:p-14 flex flex-col gap-10">
+    <div id="search-bar" ref={dropdownRef} className="bg-white rounded-3xl shadow-[0_45px_100px_-15px_rgba(0,0,0,0.1)] p-10 lg:p-14 flex flex-col gap-10">
       {/* Title */}
       <h2 className="text-3xl lg:text-[3.5rem] font-medium text-black leading-[1.05] tracking-tight">Find the best place</h2>
       
@@ -97,7 +97,7 @@ const SearchBar = () => {
               <button 
                 key={f} 
                 onClick={() => setActiveFilter(f)}
-                className={`px-5 py-2.5 border rounded-full text-[11px] font-bold tracking-[0.1em] uppercase transition-all duration-300 active:scale-[0.95] ${
+                className={`px-5 py-2.5 border rounded-xl text-[11px] font-bold tracking-[0.1em] uppercase transition-all duration-300 active:scale-[0.95] ${
                     activeFilter === f 
                     ? 'bg-black text-white border-black shadow-lg shadow-black/10' 
                     : 'border-gray-100 text-gray-400 hover:bg-gray-100 hover:text-gray-900'
@@ -108,7 +108,7 @@ const SearchBar = () => {
             ))}
           </div>
         </div>
-        <button className="w-full md:w-auto h-[54px] bg-[#22C55E] text-white px-10 rounded-full font-bold text-[12px] tracking-[0.2em] uppercase hover:bg-black hover:scale-[1.05] transition-all duration-500 active:scale-[0.97]">
+        <button className="w-full md:w-auto h-[54px] bg-[#22C55E] text-white px-10 rounded-2xl font-bold text-[12px] tracking-[0.2em] uppercase hover:bg-black hover:scale-[1.05] transition-all duration-500 active:scale-[0.97]">
           Search Properties
         </button>
       </div>

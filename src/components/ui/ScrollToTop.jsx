@@ -31,7 +31,7 @@ const ScrollToTop = () => {
             <button
                 onClick={scrollToTop}
                 className={`
-                    w-14 h-14 bg-black text-white rounded-full 
+                    w-11 h-11 bg-black text-white rounded-2xl 
                     flex items-center justify-center shadow-2xl 
                     transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]
                     pointer-events-auto hover:bg-[#22C55E] hover:scale-110 active:scale-90
@@ -39,7 +39,7 @@ const ScrollToTop = () => {
                 `}
                 aria-label="Scroll to top"
             >
-                <ArrowUp className="w-5 h-5 transition-transform duration-500 group-hover:-translate-y-1" />
+                <ArrowUp className="w-4 h-4 transition-transform duration-500 group-hover:-translate-y-1" />
             </button>
         </div>
     );

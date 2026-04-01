@@ -5,12 +5,15 @@ import StatsSection from './components/ui/StatsSection';
 import MapSection from './components/ui/MapSection';
 import PropertyList from './components/ui/PropertyList';
 import FAQSection from './components/ui/FAQSection';
+import TestimonialV2 from './components/ui/testimonial-v2';
+import CTASection from './components/ui/CTASection';
+import Footer from './components/ui/Footer';
 import ScrollToTop from './components/ui/ScrollToTop';
 import SmoothScroll from './components/ui/SmoothScroll';
 import { useEffect } from 'react';
 
 function App() {
-  // Global Image Preloading System
+  // Global Image Preloading and Reveal System
   useEffect(() => {
     const imagesToPreload = [
       '/showcase/main.png',
@@ -46,27 +49,25 @@ function App() {
     <SmoothScroll>
       <main className="w-full bg-white min-h-screen">
         {/* SECTION 01: Hero Foundation (Cards Base) */}
-        {/* We use a large trigger wrapper to provide the scrub distance */}
         <div id="hero-reveal-container" className="relative">
-          {/* The Sticky Base - This stays fixed while scrub completes */}
           <div className="sticky top-0 h-screen w-full z-0 overflow-hidden">
             <HeroSection />
           </div>
           
-          {/* Virtual Scroll Distance (Matches useScrollCanvas scrub distance) */}
+          {/* Virtual Scroll Distance for scrub */}
           <div className="h-[300vh] pointer-events-none" />
 
-          {/* THE CONTENT BODY - This entire block slides over the Hero AFTER frames complete */}
-          <div className="relative z-30 bg-white shadow-[-20px_0_100px_rgba(0,0,0,0.3)] rounded-t-[5rem] lg:rounded-t-[7rem]">
+          {/* THE CONTENT BODY */}
+          <div className="relative z-30 bg-white shadow-[-20px_0_100px_rgba(0,0,0,0.3)] rounded-t-[2.5rem] lg:rounded-t-[3rem]">
             
-            {/* SECTION 02: Search Card (Starts stacking AFTER hero scrub) */}
+            {/* SECTION 02: Search Card */}
             <section id="search-section" className="py-40 px-8 lg:px-20 reveal-up">
                 <div className="max-w-7xl mx-auto">
                     <SearchBar />
                 </div>
             </section>
 
-            {/* SECTION 03: Property Showcase Carousel (Already has white bg) */}
+            {/* SECTION 03: Property Showcase Carousel */}
             <div className="reveal-up bg-white">
                 <PropertyShowcase />
             </div>
@@ -90,6 +91,19 @@ function App() {
             <div className="reveal-up bg-white">
                <FAQSection />
             </div>
+
+            {/* SECTION 08: Scrolling Testimonials (Dark Section Reveal) */}
+            <div className="reveal-up relative z-40">
+               <TestimonialV2 />
+            </div>
+
+            {/* SECTION 09: Call To Action (Background Parallax Reveal) */}
+            <div className="reveal-up">
+               <CTASection />
+            </div>
+
+            {/* SECTION 10: Footer */}
+            <Footer />
 
             {/* Global UI Overlays */}
             <ScrollToTop />
