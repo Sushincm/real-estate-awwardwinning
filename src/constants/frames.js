@@ -1,6 +1,6 @@
-    export const TOTAL_FRAMES = 240;
+export const TOTAL_FRAMES = 240;
 export const FRAME_PATH = '/banner-frames/ezgif-frame-';
-export const FRAME_EXTENSION = '.jpg';
+export const FRAME_EXTENSION = '.webp';
 
 export const FRAME_CONTENT = [
   {
