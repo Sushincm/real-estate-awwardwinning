@@ -19,8 +19,8 @@ function App() {
   // Global Image Preloading and Reveal System
   useEffect(() => {
     const imagesToPreload = [
-      '/showcase/main.png',
-      '/showcase/thumb.png'
+      '/showcase/main.webp',
+      '/showcase/thumb.webp'
     ];
 
     imagesToPreload.forEach(imageSrc => {
@@ -61,7 +61,7 @@ function App() {
           <div className="h-[300vh] pointer-events-none" />
 
           {/* THE CONTENT BODY */}
-          <div className="relative z-30 bg-white shadow-[-20px_0_100px_rgba(0,0,0,0.3)] rounded-t-[2.5rem] lg:rounded-t-[3rem]">
+          <div id="content-body" className="relative z-30 bg-white shadow-[-20px_0_100px_rgba(0,0,0,0.3)] rounded-t-[2.5rem] lg:rounded-t-[3rem]">
             
             {/* SECTION 02: Search Card */}
             <section id="search-section" className="py-20 md:py-32 lg:py-40 px-6 md:px-20 reveal-up">

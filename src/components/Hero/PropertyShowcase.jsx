@@ -25,7 +25,7 @@ const PropertyShowcase = ({ onPlayVideo }) => {
                         className="relative w-40 h-24 rounded-2xl overflow-hidden shadow-2xl group cursor-pointer transition-transform hover:scale-105 active:scale-95 isolate transform-gpu backface-hidden"
                         style={{ maskImage: 'radial-gradient(white, black)', WebkitMaskImage: '-webkit-radial-gradient(white, black)' }}
                     >
-                        <img src="/showcase/thumb.png" alt="thumbnail" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                        <img src="/showcase/thumb.webp" alt="thumbnail" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                         <div className="absolute inset-0 bg-black/30 flex items-center justify-center backdrop-blur-[2px] group-hover:backdrop-blur-0 transition-all">
                             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                                 <Play className="w-4 h-4 fill-black text-black ml-1" />
@@ -78,7 +78,7 @@ const PropertyShowcase = ({ onPlayVideo }) => {
                                                 <SwiperSlide key={`${slideIndex}-${imgIndex}`}>
                                                     <div className="w-full h-full overflow-hidden reveal-mask">
                                                         <img 
-                                                            src={`/showcase/main.png`} 
+                                                            src={`/showcase/main.webp`} 
                                                             alt={`Property ${imgIndex}`} 
                                                             className="w-full h-full object-cover transition-transform duration-[2500ms] group-hover/img:scale-110 image-reveal-scale" 
                                                         />

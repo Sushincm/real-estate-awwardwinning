@@ -78,27 +78,27 @@ const FAQSection = () => {
         {
             question: "What types of properties do you sell?",
             answer: "We specialize in residential, commercial, and luxury properties, offering a wide range of options to suit every buyer's needs and preferences. We connect you with trusted lenders offering competitive mortgage options and financial advice. We arrange private showings for you to visit and evaluate properties before making a decision. Properties range across different price points, catering to various budgets and investment goals.",
-            image: "/showcase/main.png"
+            image: "/showcase/main.webp"
         },
         {
             question: "How do I know if a property is a good investment?",
             answer: "Our experts guide you in making informed investment decisions based on market insights. We offer residential, commercial, and luxury properties tailored to different preferences and budgets. We analyze historical appreciation, rental yields, and neighborhood growth potential to ensure your investment has strong long-term value.",
-            image: "/showcase/thumb.png"
+            image: "/showcase/thumb.webp"
         },
         {
             question: "Do I need to hire a real estate agent?",
             answer: "While not mandatory, having a professional agent can simplify the process significantly. Our team handles everything from market analysis and property searching to contract negotiations and closing paperwork, ensuring you get the best deal with minimal stress.",
-            image: "/showcase/main.png"
+            image: "/showcase/main.webp"
         },
         {
             question: "What's the process for buying a property?",
             answer: "The process begins with getting pre-approved for financing, followed by identifying your criteria and searching for properties. Once you find a match, we'll help you make an offer, conduct inspections, and finalize the paperwork. We're here to guide you through every milestone until you have the keys in hand.",
-            image: "/showcase/thumb.png"
+            image: "/showcase/thumb.webp"
         },
         {
             question: "Can I tour a property before purchasing?",
             answer: "Absolutely. We encourage private showings for all our clients. You can schedule on-site visits through our website or by contacting one of our agents. We also offer high-quality virtual tours for international buyers or those unable to visit in person.",
-            image: "/showcase/main.png"
+            image: "/showcase/main.webp"
         }
     ];
 

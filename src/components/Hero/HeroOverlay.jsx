@@ -1,15 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import TagPill from '../ui/TagPill';
 import Navbar from '../Nav/Navbar';
 import { FRAME_CONTENT } from '../../constants/frames';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const HeroOverlay = ({ isRevealed, activeContentIndex }) => {
   const [content, setContent] = useState(FRAME_CONTENT[0]);
   const contentRef = useRef(null);
 
   // Content is now updated instantly when activeContentIndex changes.
-  // The actual fade in/out is perfectly synced to the scroll position directly via DOM manipulation in useScrollCanvas.
   useEffect(() => {
       setContent(FRAME_CONTENT[activeContentIndex] || FRAME_CONTENT[0]);
   }, [activeContentIndex]);
@@ -23,6 +25,24 @@ const HeroOverlay = ({ isRevealed, activeContentIndex }) => {
     }
   }, [isRevealed]);
 
+  // Parallax and fade out hero text when the main content body overlaps it
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: '#content-body',
+        start: 'top bottom', // When the white content body reaches the bottom of the viewport
+        end: 'top center', // As it moves up towards the center of the screen
+        scrub: true,
+        animation: gsap.to(contentRef.current, {
+           opacity: 0,
+           y: -100, // Parallax slide up to get out of the way gracefully
+           ease: 'none'
+        })
+      });
+    });
+    return () => ctx.revert();
+  }, []);
+
   return (
     <div className="hero-overlay fixed inset-0 z-20 w-screen h-screen flex flex-col justify-between pointer-events-none p-6 md:p-12 lg:p-16 overflow-hidden">
       
@@ -34,29 +54,32 @@ const HeroOverlay = ({ isRevealed, activeContentIndex }) => {
 
       <div className="flex flex-col h-full justify-end relative z-10 pb-8 md:pb-0" >
         
-        {/* Dynamic Content Container */}
-        <div id="hero-dynamic-content" ref={contentRef} className="w-full grid grid-cols-12 gap-6 lg:gap-8 items-end mb-4 lg:mb-6 will-change-transform will-change-opacity">
-            <div className="col-span-12 lg:col-span-9 relative">
-                
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-4 lg:mb-6 pointer-events-auto">
-                    {content.tags.map((tag, i) => (
-                        <TagPill key={i}>{tag}</TagPill>
-                    ))}
-                </div>
+        {/* Outer container for parallax fade (controls final transition out of hero section) */}
+        <div id="hero-dynamic-fade-container" ref={contentRef} className="will-change-transform will-change-opacity">
+          {/* Inner container for scroll-synced fading between frames */}
+          <div id="hero-dynamic-content" className="w-full grid grid-cols-12 gap-6 lg:gap-8 items-end mb-4 lg:mb-6">
+              <div className="col-span-12 lg:col-span-9 relative">
+                  
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mb-4 lg:mb-6 pointer-events-auto">
+                      {content.tags.map((tag, i) => (
+                          <TagPill key={i}>{tag}</TagPill>
+                      ))}
+                  </div>
 
-                {/* Light-weight Dynamic Headline */}
-                <h1 className="text-4xl md:text-6xl lg:text-[6vw] font-light text-white leading-[1.1] lg:leading-[1.05] tracking-tight drop-shadow-2xl max-w-[600px] lg:max-w-none">
-                    {content.headline}
-                </h1>
-            </div>
+                  {/* Light-weight Dynamic Headline */}
+                  <h1 className="text-4xl md:text-6xl lg:text-[6vw] font-light text-white leading-[1.1] lg:leading-[1.05] tracking-tight drop-shadow-2xl max-w-[600px] lg:max-w-none">
+                      {content.headline}
+                  </h1>
+              </div>
 
-            {/* Dynamic Subtext */}
-            <div className="col-span-12 lg:col-span-3 flex justify-start lg:justify-end pb-2 lg:pb-4">
-                <p className="text-white/80 text-[13px] md:text-[14px] font-normal max-w-[320px] lg:max-w-[280px] leading-relaxed drop-shadow-lg text-left">
-                    {content.subtext}
-                </p>
-            </div>
+              {/* Dynamic Subtext */}
+              <div className="col-span-12 lg:col-span-3 flex justify-start lg:justify-end pb-2 lg:pb-4">
+                  <p className="text-white/80 text-[13px] md:text-[14px] font-normal max-w-[320px] lg:max-w-[280px] leading-relaxed drop-shadow-lg text-left">
+                      {content.subtext}
+                  </p>
+              </div>
+          </div>
         </div>
         
       </div>

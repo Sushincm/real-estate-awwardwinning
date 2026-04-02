@@ -14,17 +14,14 @@ export const useFramePreloader = () => {
     let readyTriggered = false;
 
     const startBackgroundLoading = () => {
-      // Delay to ensure the initial reveal is butter smooth
-      setTimeout(() => {
-        for (let i = CRITICAL_THRESHOLD; i < TOTAL_FRAMES; i++) {
-          const index = (i + 1).toString().padStart(3, '0');
-          const img = new Image();
-          img.src = `${FRAME_PATH}${index}${FRAME_EXTENSION}`;
-          frameArray[i] = img;
-        }
-        // One final refresh after background loading starts
-        setFrames([...frameArray]);
-      }, 2000);
+      for (let i = CRITICAL_THRESHOLD; i < TOTAL_FRAMES; i++) {
+        const index = (i + 1).toString().padStart(3, '0');
+        const img = new Image();
+        img.src = `${FRAME_PATH}${index}${FRAME_EXTENSION}`;
+        frameArray[i] = img;
+      }
+      // One final refresh after background loading starts
+      setFrames([...frameArray]);
     };
 
     const preloadInitialBatch = () => {

@@ -14,7 +14,7 @@ const CTASection = () => {
             <div 
                 className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat lg:bg-fixed"
                 style={{ 
-                    backgroundImage: 'url(/showcase/main.png)',
+                    backgroundImage: 'url(/showcase/main.webp)',
                 }}
             >
                 {/* REFINED READABILITY TINT (REDUCED OPACITY) */}

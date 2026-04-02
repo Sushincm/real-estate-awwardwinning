@@ -46,12 +46,12 @@ const PropertyCard = ({ image, name, price, address, beds, baths }) => {
 
 const PropertyList = () => {
     const properties = [
-        { image: '/showcase/main.png', name: 'The Pinnacle at Highland Park', price: '$3,567,980.00', address: '123 Maple Street, New York', beds: 5, baths: 2 },
-        { image: '/showcase/thumb.png', name: 'The Pinnacle at Highland Park', price: '$2,490,899.99', address: '789 Forest Lane, Denver, CO', beds: 5, baths: 2 },
-        { image: '/showcase/main.png', name: 'The Pinnacle at Highland Park', price: '$4,567,450.00', address: '123 Serenity Drive, Austin, TX', beds: 5, baths: 2 },
-        { image: '/showcase/thumb.png', name: 'The Pinnacle at Highland Park', price: '$3,567,980.00', address: '123 Maple Street, New York', beds: 5, baths: 2 },
-        { image: '/showcase/main.png', name: 'The Pinnacle at Highland Park', price: '$2,490,899.99', address: '789 Forest Lane, Denver, CO', beds: 5, baths: 2 },
-        { image: '/showcase/thumb.png', name: 'The Pinnacle at Highland Park', price: '$4,567,450.00', address: '123 Serenity Drive, Austin, TX', beds: 5, baths: 2 },
+        { image: '/showcase/main.webp', name: 'The Pinnacle at Highland Park', price: '$3,567,980.00', address: '123 Maple Street, New York', beds: 5, baths: 2 },
+        { image: '/showcase/thumb.webp', name: 'The Pinnacle at Highland Park', price: '$2,490,899.99', address: '789 Forest Lane, Denver, CO', beds: 5, baths: 2 },
+        { image: '/showcase/main.webp', name: 'The Pinnacle at Highland Park', price: '$4,567,450.00', address: '123 Serenity Drive, Austin, TX', beds: 5, baths: 2 },
+        { image: '/showcase/thumb.webp', name: 'The Pinnacle at Highland Park', price: '$3,567,980.00', address: '123 Maple Street, New York', beds: 5, baths: 2 },
+        { image: '/showcase/main.webp', name: 'The Pinnacle at Highland Park', price: '$2,490,899.99', address: '789 Forest Lane, Denver, CO', beds: 5, baths: 2 },
+        { image: '/showcase/thumb.webp', name: 'The Pinnacle at Highland Park', price: '$4,567,450.00', address: '123 Serenity Drive, Austin, TX', beds: 5, baths: 2 },
     ];
 
     return (

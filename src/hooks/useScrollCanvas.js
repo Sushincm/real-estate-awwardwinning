@@ -12,8 +12,16 @@ export const useScrollCanvas = (frames, isReady) => {
   // ✅ Ref to prevent calling setOverlayVisible on every scroll frame
   const overlayVisibleRef = useRef(false);
 
+  // ✅ Store frames in a ref to avoid recreating ScrollTrigger unnecessarily
+  const framesRef = useRef(frames);
   useEffect(() => {
-    if (!isReady || frames.length === 0) return;
+    framesRef.current = frames;
+  }, [frames]);
+
+  const drawFrameRef = useRef(null);
+
+  useEffect(() => {
+    if (!isReady || framesRef.current.length === 0) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
@@ -22,11 +30,28 @@ export const useScrollCanvas = (frames, isReady) => {
     const ctx = canvas.getContext('2d');
 
     const drawFrame = (index) => {
-      const img = frames[index];
-      if (!img || !img.complete) return;
+      const currentFrames = framesRef.current;
+      const safeIndex = Math.max(0, Math.min(index, TOTAL_FRAMES - 1));
+      const img = currentFrames[safeIndex];
+      
+      // If image hasn't even been constructed in the array yet, just return.
+      if (!img) return;
+
+      // If the image is created but hasn't finished downloading yet
+      if (!img.complete) {
+         img.onload = () => {
+             // Only draw if we are still on this frame!
+             if (safeIndex === frameIndexRef.current || (frameIndexRef.current === -1 && safeIndex === 0)) {
+                 drawFrame(safeIndex);
+             }
+         };
+         return;
+      }
 
       const cw = canvas.width;
       const ch = canvas.height;
+      if (cw === 0 || ch === 0) return;
+
       const iw = img.naturalWidth || 1920;
       const ih = img.naturalHeight || 1080;
 
@@ -40,6 +65,9 @@ export const useScrollCanvas = (frames, isReady) => {
       ctx.clearRect(0, 0, cw, ch);
       ctx.drawImage(img, sx, sy, sw, sh);
     };
+
+    // Store the drawing function so external generic updates can trigger it
+    drawFrameRef.current = drawFrame;
 
     // Initial draw
     const handleResize = () => {
@@ -56,7 +84,7 @@ export const useScrollCanvas = (frames, isReady) => {
     const st = ScrollTrigger.create({
       trigger: '#hero-reveal-container',
       start: 'top top',
-      end: '+=300%', // Bound specifically to the virtual 300vh scroll zone, not the whole page!
+      end: () => "+=" + (window.innerHeight * 3), // Bound specifically to the virtual 300vh scroll zone
       scrub: 1, // Smoothness
       onUpdate: (self) => {
         const progress = self.progress;
@@ -66,13 +94,15 @@ export const useScrollCanvas = (frames, isReady) => {
         const contentEl = document.getElementById('hero-dynamic-content');
         if (contentEl) {
           const block = FRAME_CONTENT.find(c => currentFrame >= c.startFrame && currentFrame <= c.endFrame);
+          const isLastBlock = block && block.endFrame === FRAME_CONTENT[FRAME_CONTENT.length - 1].endFrame;
+          
           if (block) {
-            const fadeFrames = 12; // Adjusted threshold for a smooth fade transition
+            const fadeFrames = 8; // Faster threshold for a snappier transition, reducing the "blank" window
             let opacity = 1;
             let y = 0;
 
-            if (currentFrame > block.endFrame - fadeFrames) {
-              // Fade Out at the end of a block
+            if (currentFrame > block.endFrame - fadeFrames && !isLastBlock) {
+              // Fade Out at the end of a block, except for the very last block
               const localProgress = (currentFrame - (block.endFrame - fadeFrames)) / fadeFrames;
               opacity = 1 - localProgress;
               y = 20 * localProgress; // Moves down as it fades out
@@ -117,7 +147,14 @@ export const useScrollCanvas = (frames, isReady) => {
       st.kill();
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
-  }, [isReady, frames]); // Added overlayVisible to deps? No, we use local state inside.
+  }, [isReady]);
+
+  // Fallback redraw handler for when background frames are finally injected
+  useEffect(() => {
+    if (drawFrameRef.current && frameIndexRef.current >= 0) {
+      drawFrameRef.current(frameIndexRef.current);
+    }
+  }, [frames]);
 
   return { canvasRef, overlayVisible, activeContentIndex };
 };
