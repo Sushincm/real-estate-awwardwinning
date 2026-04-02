@@ -3,7 +3,7 @@ import { ArrowRight, Bed, Bath, MapPin } from 'lucide-react';
 
 const PropertyCard = ({ image, name, price, address, beds, baths }) => {
     return (
-        <div className="flex flex-col gap-5 md:gap-6 group cursor-pointer will-change-transform">
+        <div className="flex flex-col gap-5 md:gap-6 group cursor-pointer">
             {/* Robust Image Container - Solving border-radius glitch with transform-gpu and mask-image */}
             <div 
                 className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gray-100 shadow-sm transition-all duration-700 hover:shadow-2xl hover:scale-[1.02] transform-gpu isolate backface-hidden"
@@ -12,7 +12,7 @@ const PropertyCard = ({ image, name, price, address, beds, baths }) => {
                 <img 
                     src={image} 
                     alt={name} 
-                    className="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110 will-change-transform transform-gpu" 
+                    className="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110 transform-gpu" 
                 />
                 <div className="absolute top-4 left-4 md:top-6 md:left-6">
                     <span className="bg-white/95 backdrop-blur-md px-3 md:px-4 py-1.5 md:py-2 rounded-xl text-[9px] md:text-[10px] font-black tracking-[0.1em] text-black shadow-md uppercase">FOR SALE</span>

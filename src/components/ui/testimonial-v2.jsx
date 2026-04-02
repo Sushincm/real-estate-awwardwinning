@@ -66,18 +66,20 @@ const thirdColumn = testimonials.slice(6, 9);
 const TestimonialsColumn = (props) => {
   return (
     <div className={props.className}>
-      <motion.ul
-        animate={{
-          translateY: "-50%",
+      <ul
+        style={{
+          animation: `vertical-scroll-${props.duration} ${props.duration}s linear infinite`,
         }}
-        transition={{
-          duration: props.duration || 10,
-          repeat: Infinity,
-          ease: "linear",
-          repeatType: "loop",
-        }}
-        className="flex flex-col gap-6 pb-6 bg-transparent transition-colors duration-300 list-none m-0 p-0"
+        className="flex flex-col gap-6 pb-6 bg-transparent transition-colors duration-300 list-none m-0 p-0 transform-gpu"
       >
+        <style>
+          {`
+            @keyframes vertical-scroll-${props.duration} {
+              from { transform: translateY(0); }
+              to { transform: translateY(-50%); }
+            }
+          `}
+        </style>
         {[
           ...new Array(2).fill(0).map((_, index) => (
             <React.Fragment key={index}>
@@ -121,7 +123,7 @@ const TestimonialsColumn = (props) => {
             </React.Fragment>
           )),
         ]}
-      </motion.ul>
+      </ul>
     </div>
   );
 };
