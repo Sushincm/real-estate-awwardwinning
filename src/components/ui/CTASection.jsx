@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 const CTASection = () => {
     return (
         <section 
-            className="relative h-[600px] lg:h-[700px] w-full overflow-hidden rounded-t-[2.5rem] lg:rounded-t-[3rem] -mt-16 z-50 flex items-center justify-center text-center px-8"
+            className="relative h-[500px] md:h-[600px] lg:h-[700px] w-full overflow-hidden rounded-t-[2.2rem] lg:rounded-t-[3rem] -mt-16 z-50 flex items-center justify-center text-center px-6 md:px-8"
         >
             {/* Native Parallax Background */}
             <div 
@@ -23,12 +23,12 @@ const CTASection = () => {
             </div>
 
             {/* Content Container */}
-            <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center gap-10">
-                <div className="flex flex-col gap-6 reveal-up">
-                    <h2 className="text-3xl lg:text-[3.5rem] font-medium text-white leading-[1.1] tracking-tight drop-shadow-2xl">
-                        Ready to Make Your<br/>Dream Property a Reality?
+            <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center gap-8 md:gap-10">
+                <div className="flex flex-col gap-5 md:gap-6 reveal-up text-center items-center">
+                    <h2 className="text-3xl md:text-5xl lg:text-[3.5rem] font-medium text-white leading-[1.1] tracking-tight drop-shadow-2xl">
+                        Ready to Make Your<br className="hidden md:block" />Dream Property a Reality?
                     </h2>
-                    <p className="text-white/80 text-[17px] font-medium max-w-lg mx-auto leading-relaxed drop-shadow-md">
+                    <p className="text-white/80 text-[15px] md:text-[17px] font-medium max-w-[280px] md:max-w-lg mx-auto leading-relaxed drop-shadow-md">
                         Explore a curated selection of properties that align with your vision and goals.
                     </p>
                 </div>

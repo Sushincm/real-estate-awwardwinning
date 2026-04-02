@@ -11,9 +11,9 @@ import '../../../node_modules/swiper/modules/effect-fade.css';
 
 const PropertyShowcase = ({ onPlayVideo }) => {
     return (
-        <section className="bg-white pt-0 pb-20 px-10 lg:px-20 overflow-hidden font-sans relative">
+        <section className="bg-white pt-0 pb-16 md:pb-20 px-6 md:px-16 lg:px-20 overflow-hidden font-sans relative">
             {/* Header Row */}
-            <div className="flex flex-col lg:flex-row justify-between items-end mb-24 gap-12 reveal-up">
+            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-12 md:mb-16 lg:mb-24 gap-10 lg:gap-12 reveal-up">
                 <h2 className="text-3xl lg:text-[3.5rem] font-medium text-black leading-[1.05] tracking-tight max-w-[800px]">
                     Your primary home might begin to feel left out.
                 </h2>
@@ -100,7 +100,7 @@ const PropertyShowcase = ({ onPlayVideo }) => {
                                 </div>
 
                                 <div className="col-span-12 lg:col-span-5 flex flex-col gap-10">
-                                    <div className="flex-1 bg-[#F9F9F9] rounded-3xl p-12 lg:p-14 flex flex-col justify-between items-start shadow-sm border border-black/[0.03]">
+                                    <div className="flex-1 bg-[#F9F9F9] rounded-3xl p-8 md:p-12 lg:p-14 flex flex-col justify-between items-start shadow-sm border border-black/[0.03]">
                                         <div className="flex flex-col gap-8">
                                             <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-md">
                                                 <ExternalLink className="w-6 h-6 text-black" />

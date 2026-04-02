@@ -92,7 +92,7 @@ const TestimonialsColumn = (props) => {
                     boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
                     transition: { type: "spring", stiffness: 400, damping: 17 }
                   }}
-                  className="p-10 rounded-2xl border border-white/5 shadow-2xl max-w-xs w-full bg-neutral-900/50 backdrop-blur-md transition-all duration-300 cursor-default select-none focus:outline-none focus:ring-2 focus:ring-[#22C55E]/30" 
+                  className="p-6 md:p-10 rounded-2xl border border-white/5 shadow-2xl max-w-xs w-full bg-neutral-900/50 backdrop-blur-md transition-all duration-300 cursor-default select-none focus:outline-none focus:ring-2 focus:ring-[#22C55E]/30" 
                 >
                   <blockquote className="m-0 p-0">
                     <p className="text-neutral-400 leading-relaxed font-medium m-0 transition-colors duration-300">
@@ -130,7 +130,7 @@ const TestimonialV2 = () => {
   return (
     <section 
       aria-labelledby="testimonials-heading"
-      className="bg-black py-32 lg:py-40 relative overflow-hidden rounded-t-[3rem] -mt-16 z-40"
+      className="bg-black py-20 md:py-32 lg:py-40 relative overflow-hidden rounded-t-[2.2rem] lg:rounded-t-[3rem] -mt-16 z-40"
     >
       {/* Background Mesh Gradient for Dark Mode Premium Feel */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
@@ -147,13 +147,13 @@ const TestimonialV2 = () => {
           ease: [0.16, 1, 0.3, 1],
           opacity: { duration: 0.8 }
         }}
-        className="container px-8 lg:px-24 z-10 mx-auto relative"
+        className="container px-6 md:px-12 lg:px-24 z-10 mx-auto relative"
       >
-        <div className="flex flex-col items-center justify-center max-w-[700px] mx-auto mb-20">
-          <h2 id="testimonials-heading" className="text-4xl md:text-[4rem] font-medium tracking-tight text-center text-white leading-tight">
-            What our homeowners<br/>have to say
+        <div className="flex flex-col items-center justify-center max-w-[700px] mx-auto mb-12 md:mb-20">
+          <h2 id="testimonials-heading" className="text-3xl md:text-[4rem] font-medium tracking-tight text-center text-white leading-tight">
+            What our homeowners<br className="hidden md:block" />have to say
           </h2>
-          <p className="text-center mt-8 text-neutral-400 text-lg leading-relaxed max-w-lg transition-colors font-medium">
+          <p className="text-center mt-6 md:mt-8 text-neutral-400 text-[15px] md:text-lg leading-relaxed max-w-lg transition-colors font-medium">
             Discover why thousands of homeowners trust EverGreen to find their perfect sanctuary and investment properties.
           </p>
         </div>

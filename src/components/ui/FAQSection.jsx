@@ -103,13 +103,13 @@ const FAQSection = () => {
     ];
 
     return (
-        <section className="bg-white pt-20 pb-40 px-12 lg:px-24 reveal-up">
-            <div className="max-w-7xl mx-auto flex flex-col gap-20">
+        <section className="bg-white py-16 md:py-24 lg:py-40 px-6 md:px-16 lg:px-24 reveal-up">
+            <div className="max-w-7xl mx-auto flex flex-col gap-12 md:gap-20">
                 
                 {/* Header Row */}
-                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10">
-                    <h2 className="text-3xl lg:text-[3.5rem] font-medium text-black leading-[1.05] tracking-tight max-w-[550px]">
-                        Frequently asked<br />questions
+                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 md:gap-10">
+                    <h2 className="text-3xl md:text-5xl lg:text-[3.5rem] font-medium text-black leading-[1.1] md:leading-[1.05] tracking-tight max-w-[550px]">
+                        Frequently asked<br className="hidden md:block" />questions
                     </h2>
                     <p className="text-gray-500 font-medium text-[17px] leading-relaxed max-w-[480px] lg:-mb-1">
                         Our experts guide you in making informed investment decisions based on market insights. We offer residential, commercial, and luxury properties tailored to different preferences and budgets.

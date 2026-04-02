@@ -19,17 +19,15 @@ const SmoothScroll = ({ children }) => {
 
     lenis.on('scroll', ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
+    // ✅ Store as named reference so it can be properly removed on cleanup
+    const lenisRaf = (time) => lenis.raf(time * 1000);
+    gsap.ticker.add(lenisRaf);
     gsap.ticker.lagSmoothing(0);
 
     return () => {
       lenis.destroy();
-      gsap.ticker.remove((time) => {
-        lenis.raf(time * 1000);
-      });
+      // ✅ Removes the EXACT same function reference — no leak
+      gsap.ticker.remove(lenisRaf);
     };
   }, []);
 

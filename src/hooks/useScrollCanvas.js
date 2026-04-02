@@ -9,6 +9,8 @@ export const useScrollCanvas = (frames, isReady) => {
   const [overlayVisible, setOverlayVisible] = useState(false);
   const [activeContentIndex, setActiveContentIndex] = useState(0);
   const frameIndexRef = useRef(-1);
+  // ✅ Ref to prevent calling setOverlayVisible on every scroll frame
+  const overlayVisibleRef = useRef(false);
 
   useEffect(() => {
     if (!isReady || frames.length === 0) return;
@@ -41,9 +43,10 @@ export const useScrollCanvas = (frames, isReady) => {
 
     // Initial draw
     const handleResize = () => {
-      canvas.width = window.innerWidth * window.devicePixelRatio;
-      canvas.height = window.innerHeight * window.devicePixelRatio;
-      // Ensure we draw frame 0 even if frameIndexRef is set to -1 for the scroll listener initialization bounds
+      // ✅ Cap pixel ratio at 2 — prevents 3x/4x canvas on high-DPI devices (saves GPU VRAM)
+      const dpr = Math.min(window.devicePixelRatio, 2);
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
       drawFrame(Math.max(0, frameIndexRef.current));
     };
 
@@ -100,12 +103,12 @@ export const useScrollCanvas = (frames, isReady) => {
           }
         }
 
-        // Reveal UI near the end (phase 3)
+        // ✅ Only call setState when value actually changes — avoids 60fps re-renders
         const isPastThreshold = progress >= ANIM_CONFIG.revealThreshold;
-        setOverlayVisible((prev) => {
-          if (prev !== isPastThreshold) return isPastThreshold;
-          return prev;
-        });
+        if (overlayVisibleRef.current !== isPastThreshold) {
+          overlayVisibleRef.current = isPastThreshold;
+          setOverlayVisible(isPastThreshold);
+        }
       }
     });
 

@@ -30,8 +30,9 @@ const VideoModal = ({ isOpen, onClose, videoUrl = "https://www.youtube.com/embed
     }
   }, [isOpen]);
 
-  if (!isOpen) return null;
-
+  // ✅ Always render so GSAP can animate both entry AND exit correctly.
+  // GSAP uses display:'flex'/'none' internally — the `hidden` class is the default
+  // resting state before the first open animation runs.
   return (
     <div 
       ref={modalRef} 

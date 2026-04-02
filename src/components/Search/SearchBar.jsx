@@ -34,20 +34,20 @@ const SearchBar = () => {
   };
 
   return (
-    <div id="search-bar" ref={dropdownRef} className="bg-white rounded-3xl shadow-[0_45px_100px_-15px_rgba(0,0,0,0.1)] p-10 lg:p-14 flex flex-col gap-10">
+    <div id="search-bar" ref={dropdownRef} className="bg-white rounded-3xl shadow-[0_45px_100px_-15px_rgba(0,0,0,0.1)] p-5 md:p-10 lg:p-14 flex flex-col gap-6 md:gap-10 transition-all duration-500">
       {/* Title */}
-      <h2 className="text-3xl lg:text-[3.5rem] font-medium text-black leading-[1.05] tracking-tight reveal-up">Find the best place</h2>
+      <h2 className="text-3xl md:text-4xl lg:text-[3.5rem] font-medium text-black leading-[1.1] md:leading-[1.05] tracking-tight reveal-up">Find the best place</h2>
       
       {/* Inputs Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         {/* Looking for - Real Input */}
-        <div className="flex flex-col gap-3 group px-1 reveal-up stagger-delay-1">
-          <label className="text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] group-focus-within:text-black transition-colors">Looking for</label>
-          <div className="bg-[#F3F4F6] px-6 py-[1.125rem] rounded-2xl flex items-center border border-transparent focus-within:border-gray-200 focus-within:bg-white transition-all duration-300">
+        <div className="flex flex-col gap-2 md:gap-3 group px-1 reveal-up stagger-delay-1">
+          <label className="text-[10px] md:text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] group-focus-within:text-black transition-colors">Looking for</label>
+          <div className="bg-[#F3F4F6] px-5 py-[0.875rem] md:py-[1.125rem] rounded-2xl flex items-center border border-transparent focus-within:border-gray-200 focus-within:bg-white transition-all duration-300">
             <input 
                 type="text" 
                 placeholder="Enter type" 
-                className="bg-transparent border-none outline-none text-black text-[14.5px] font-medium w-full placeholder:text-gray-400"
+                className="bg-transparent border-none outline-none text-black text-[14px] md:text-[14.5px] font-medium w-full placeholder:text-gray-400"
             />
           </div>
         </div>
@@ -58,16 +58,16 @@ const SearchBar = () => {
           { id: 'location', label: 'Locations', value: selections.location, icon: MapPin, options: SEARCH_OPTIONS.locations },
           { id: 'rooms', label: 'Number of rooms', value: selections.rooms, icon: BedDouble, options: SEARCH_OPTIONS.rooms },
         ].map((field, i) => (
-          <div key={field.id} className={`flex flex-col gap-3 relative reveal-up stagger-delay-${i + 2}`}>
-            <label className="text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] px-1">{field.label}</label>
+          <div key={field.id} className={`flex flex-col gap-2 md:gap-3 relative reveal-up stagger-delay-${i + 2}`}>
+            <label className="text-[10px] md:text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] px-1">{field.label}</label>
             <button 
                 onClick={() => toggleDropdown(field.id)}
-                className={`bg-[#F3F4F6] px-6 py-5 rounded-2xl flex justify-between items-center cursor-pointer hover:bg-gray-200 transition-all duration-300 active:scale-[0.98] outline-none hover:shadow-sm ${openDropdown === field.id ? 'ring-2 ring-black/5 bg-white' : ''}`}
+                className={`bg-[#F3F4F6] px-5 py-3.5 md:py-5 rounded-2xl flex justify-between items-center cursor-pointer hover:bg-gray-200 transition-all duration-300 active:scale-[0.98] outline-none hover:shadow-sm ${openDropdown === field.id ? 'ring-2 ring-black/5 bg-white' : ''}`}
             >
                 <div className="flex items-center gap-3">
-                    <span className="text-black text-[14.5px] font-medium">{field.value}</span>
+                    <span className="text-black text-[14px] md:text-[14.5px] font-medium">{field.value}</span>
                 </div>
-                <ChevronDown className={`w-4 h-4 stroke-[2.5] text-gray-400 transition-transform ${openDropdown === field.id ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-3 h-3 md:w-4 md:h-4 stroke-[2.5] text-gray-400 transition-transform ${openDropdown === field.id ? 'rotate-180' : ''}`} />
             </button>
 
             {/* Dropdown Menu */}
@@ -77,7 +77,7 @@ const SearchBar = () => {
                     <button 
                         key={opt}
                         onClick={() => handleSelect(field.id, opt)}
-                        className="w-full text-left px-6 py-3 text-[14px] font-medium text-gray-600 hover:bg-gray-50 hover:text-black transition-colors"
+                        className="w-full text-left px-5 py-3 text-[13px] md:text-[14px] font-medium text-gray-600 hover:bg-gray-50 hover:text-black transition-colors"
                     >
                         {opt}
                     </button>
@@ -89,15 +89,15 @@ const SearchBar = () => {
       </div>
 
       {/* Row: Filters and CTA */}
-      <div className="flex flex-col md:flex-row justify-between items-center pt-2 gap-6 reveal-up stagger-delay-5">
-        <div className="flex items-center gap-5">
-          <span className="text-[11px] font-bold text-black uppercase tracking-[0.2em]">Filter:</span>
-          <div className="flex gap-2">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center pt-2 gap-6 lg:gap-8 reveal-up stagger-delay-5">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5 w-full">
+          <span className="text-[10px] md:text-[11px] font-bold text-black uppercase tracking-[0.2em]">Filter:</span>
+          <div className="flex flex-wrap gap-2">
             {FILTERS.map((f) => (
               <button 
                 key={f} 
                 onClick={() => setActiveFilter(f)}
-                className={`px-5 py-2.5 border rounded-xl text-[11px] font-bold tracking-[0.1em] uppercase transition-all duration-300 active:scale-[0.95] ${
+                className={`px-4 md:px-5 py-2 md:py-2.5 border rounded-xl text-[10px] md:text-[11px] font-bold tracking-[0.1em] uppercase transition-all duration-300 active:scale-[0.95] ${
                     activeFilter === f 
                     ? 'bg-black text-white border-black shadow-lg shadow-black/10' 
                     : 'border-gray-100 text-gray-400 hover:bg-gray-100 hover:text-gray-900'
@@ -108,7 +108,7 @@ const SearchBar = () => {
             ))}
           </div>
         </div>
-        <button className="w-full md:w-auto h-[54px] bg-[#22C55E] text-white px-10 rounded-2xl font-bold text-[12px] tracking-[0.2em] uppercase hover:bg-black hover:scale-[1.05] transition-all duration-500 active:scale-[0.97]">
+        <button className="w-full lg:w-auto h-[50px] md:h-[54px] bg-[#22C55E] text-white px-8 md:px-10 rounded-2xl font-bold text-[11px] md:text-[12px] tracking-[0.2em] uppercase hover:bg-black hover:scale-[1.05] transition-all duration-500 active:scale-[0.97] shadow-xl shadow-[#22C55E]/20">
           Search Properties
         </button>
       </div>
