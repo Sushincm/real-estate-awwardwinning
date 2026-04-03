@@ -8,150 +8,147 @@ export const useScrollCanvas = (frames, isReady) => {
   const canvasRef = useRef(null);
   const [overlayVisible, setOverlayVisible] = useState(false);
   const [activeContentIndex, setActiveContentIndex] = useState(0);
-  const frameIndexRef = useRef(-1);
-  // ✅ Ref to prevent calling setOverlayVisible on every scroll frame
+  
+  // Start with 0 to ensure initial draw happens
+  const frameIndexRef = useRef(0);
   const overlayVisibleRef = useRef(false);
-
-  // ✅ Store frames in a ref to avoid recreating ScrollTrigger unnecessarily
   const framesRef = useRef(frames);
+  const drawFrameRef = useRef(null);
+
+  // Keep framesRef in sync
   useEffect(() => {
     framesRef.current = frames;
   }, [frames]);
 
-  const drawFrameRef = useRef(null);
-
   useEffect(() => {
-    if (!isReady || framesRef.current.length === 0) return;
+    if (!isReady || !frames || frames.length === 0) return;
 
-    gsap.registerPlugin(ScrollTrigger);
+    // Use GSAP context for better cleanup
+    let ctx_gsap = gsap.context(() => {
+      gsap.registerPlugin(ScrollTrigger);
 
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d', { alpha: false }); // Performance optimization
 
-    const drawFrame = (index) => {
-      const currentFrames = framesRef.current;
-      const safeIndex = Math.max(0, Math.min(index, TOTAL_FRAMES - 1));
-      const img = currentFrames[safeIndex];
-      
-      // If image hasn't even been constructed in the array yet, just return.
-      if (!img) return;
+      const drawFrame = (index) => {
+        const currentFrames = framesRef.current;
+        if (!currentFrames || currentFrames.length === 0) return;
 
-      // If the image is created but hasn't finished downloading yet
-      if (!img.complete) {
-         img.onload = () => {
-             // Only draw if we are still on this frame!
-             if (safeIndex === frameIndexRef.current || (frameIndexRef.current === -1 && safeIndex === 0)) {
+        const safeIndex = Math.max(0, Math.min(index, TOTAL_FRAMES - 1));
+        const img = currentFrames[safeIndex];
+        
+        if (!img) return;
+
+        if (!img.complete) {
+           img.onload = () => {
+             if (safeIndex === frameIndexRef.current) {
                  drawFrame(safeIndex);
              }
-         };
-         return;
-      }
+           };
+           return;
+        }
 
-      const cw = canvas.width;
-      const ch = canvas.height;
-      if (cw === 0 || ch === 0) return;
+        const cw = canvas.width;
+        const ch = canvas.height;
+        if (cw === 0 || ch === 0) return;
 
-      const iw = img.naturalWidth || 1920;
-      const ih = img.naturalHeight || 1080;
+        const iw = img.naturalWidth || 1920;
+        const ih = img.naturalHeight || 1080;
 
-      // Object-fit: cover equivalent logic
-      const scale = Math.max(cw / iw, ch / ih);
-      const sw = iw * scale;
-      const sh = ih * scale;
-      const sx = (cw - sw) / 2;
-      const sy = (ch - sh) / 2;
+        const scale = Math.max(cw / iw, ch / ih);
+        const sw = iw * scale;
+        const sh = ih * scale;
+        const sx = (cw - sw) / 2;
+        const sy = (ch - sh) / 2;
 
-      ctx.clearRect(0, 0, cw, ch);
-      ctx.drawImage(img, sx, sy, sw, sh);
-    };
+        ctx.drawImage(img, sx, sy, sw, sh);
+      };
 
-    // Store the drawing function so external generic updates can trigger it
-    drawFrameRef.current = drawFrame;
+      drawFrameRef.current = drawFrame;
 
-    // Initial draw
-    const handleResize = () => {
-      // ✅ Cap pixel ratio at 2 — prevents 3x/4x canvas on high-DPI devices (saves GPU VRAM)
-      const dpr = Math.min(window.devicePixelRatio, 2);
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      drawFrame(Math.max(0, frameIndexRef.current));
-    };
+      const handleResize = () => {
+        const dpr = Math.min(window.devicePixelRatio, 2);
+        canvas.width = window.innerWidth * dpr;
+        canvas.height = window.innerHeight * dpr;
+        drawFrame(frameIndexRef.current);
+      };
 
-    window.addEventListener('resize', handleResize);
-    handleResize();
+      window.addEventListener('resize', handleResize);
+      handleResize();
 
-    const st = ScrollTrigger.create({
-      trigger: '#hero-reveal-container',
-      start: 'top top',
-      end: () => "+=" + (window.innerHeight * 3), // Bound specifically to the virtual 300vh scroll zone
-      scrub: 1, // Smoothness
-      onUpdate: (self) => {
-        const progress = self.progress;
-        const currentFrame = Math.floor(progress * (TOTAL_FRAMES - 1));
-        
-        // --- High-Performance Scroll-Synced Content Fading ---
-        const contentEl = document.getElementById('hero-dynamic-content');
-        if (contentEl) {
-          const block = FRAME_CONTENT.find(c => currentFrame >= c.startFrame && currentFrame <= c.endFrame);
-          const isLastBlock = block && block.endFrame === FRAME_CONTENT[FRAME_CONTENT.length - 1].endFrame;
+      const st = ScrollTrigger.create({
+        trigger: '#hero-reveal-container',
+        start: 'top top',
+        end: () => "+=" + (window.innerHeight * 3),
+        scrub: 1,
+        onUpdate: (self) => {
+          const progress = self.progress;
+          const currentFrame = Math.floor(progress * (TOTAL_FRAMES - 1));
           
-          if (block) {
-            const fadeFrames = 8; // Faster threshold for a snappier transition, reducing the "blank" window
-            let opacity = 1;
-            let y = 0;
+          // Content Fading Logic
+          const contentEl = document.getElementById('hero-dynamic-content');
+          if (contentEl) {
+            const block = FRAME_CONTENT.find(c => currentFrame >= c.startFrame && currentFrame <= c.endFrame);
+            const isLastBlock = block && block.endFrame === FRAME_CONTENT[FRAME_CONTENT.length - 1].endFrame;
+            
+            if (block) {
+              const fadeFrames = 8;
+              let opacity = 1;
+              let y = 0;
 
-            if (currentFrame > block.endFrame - fadeFrames && !isLastBlock) {
-              // Fade Out at the end of a block, except for the very last block
-              const localProgress = (currentFrame - (block.endFrame - fadeFrames)) / fadeFrames;
-              opacity = 1 - localProgress;
-              y = 20 * localProgress; // Moves down as it fades out
-            } 
-            else if (currentFrame < block.startFrame + fadeFrames) {
-              // Fade In at the start of a block
-              const localProgress = (currentFrame - block.startFrame) / fadeFrames;
-              opacity = localProgress;
-              y = -20 * (1 - localProgress); // Moves up as it fades in
+              if (currentFrame > block.endFrame - fadeFrames && !isLastBlock) {
+                const localProgress = (currentFrame - (block.endFrame - fadeFrames)) / fadeFrames;
+                opacity = 1 - localProgress;
+                y = 20 * localProgress;
+              } 
+              else if (currentFrame < block.startFrame + fadeFrames) {
+                const localProgress = (currentFrame - block.startFrame) / fadeFrames;
+                opacity = localProgress;
+                y = -20 * (1 - localProgress);
+              }
+
+              contentEl.style.opacity = Math.max(0, Math.min(1, opacity));
+              contentEl.style.transform = `translateY(${y}px)`;
             }
+          }
 
-            // Direct DOM style mutation avoiding React render cycles for 60fps scrub
-            contentEl.style.opacity = Math.max(0, Math.min(1, opacity));
-            contentEl.style.transform = `translateY(${y}px)`;
+          if (currentFrame !== frameIndexRef.current) {
+            frameIndexRef.current = currentFrame;
+            requestAnimationFrame(() => drawFrame(currentFrame));
+
+            const newActiveIndex = FRAME_CONTENT.findIndex(
+              (c) => currentFrame >= c.startFrame && currentFrame <= c.endFrame
+            );
+            if (newActiveIndex !== -1) {
+               setActiveContentIndex(prev => prev !== newActiveIndex ? newActiveIndex : prev);
+            }
+          }
+
+          const isPastThreshold = progress >= ANIM_CONFIG.revealThreshold;
+          if (overlayVisibleRef.current !== isPastThreshold) {
+            overlayVisibleRef.current = isPastThreshold;
+            setOverlayVisible(isPastThreshold);
           }
         }
-        // -----------------------------------------------------
+      });
 
-        if (currentFrame !== frameIndexRef.current) {
-          frameIndexRef.current = currentFrame;
-          requestAnimationFrame(() => drawFrame(currentFrame));
-
-          const newActiveIndex = FRAME_CONTENT.findIndex(
-            (c) => currentFrame >= c.startFrame && currentFrame <= c.endFrame
-          );
-          if (newActiveIndex !== -1) {
-             setActiveContentIndex(prev => prev !== newActiveIndex ? newActiveIndex : prev);
-          }
-        }
-
-        // ✅ Only call setState when value actually changes — avoids 60fps re-renders
-        const isPastThreshold = progress >= ANIM_CONFIG.revealThreshold;
-        if (overlayVisibleRef.current !== isPastThreshold) {
-          overlayVisibleRef.current = isPastThreshold;
-          setOverlayVisible(isPastThreshold);
-        }
-      }
+      // Recalculate everything after a small tick to ensure DOM is settled
+      ScrollTrigger.refresh();
+      
+      // Force initial update to sync state with scroll position
+      st.update();
     });
 
     return () => {
+      ctx_gsap.revert();
       window.removeEventListener('resize', handleResize);
-      st.kill();
-      ScrollTrigger.getAll().forEach(t => t.kill());
     };
   }, [isReady]);
 
-  // Fallback redraw handler for when background frames are finally injected
+  // Fallback redraw handler
   useEffect(() => {
-    if (drawFrameRef.current && frameIndexRef.current >= 0) {
+    if (drawFrameRef.current) {
       drawFrameRef.current(frameIndexRef.current);
     }
   }, [frames]);
