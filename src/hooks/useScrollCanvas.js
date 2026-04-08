@@ -36,17 +36,31 @@ export const useScrollCanvas = (frames, isReady) => {
         if (!currentFrames || currentFrames.length === 0) return;
 
         const safeIndex = Math.max(0, Math.min(index, TOTAL_FRAMES - 1));
-        const img = currentFrames[safeIndex];
+        let img = currentFrames[safeIndex];
         
         if (!img) return;
 
         if (!img.complete) {
            img.onload = () => {
-             if (safeIndex === frameIndexRef.current) {
-                 drawFrame(safeIndex);
-             }
+             // When this image loads, try to re-draw the CURRENT scroll position
+             requestAnimationFrame(() => {
+                if (drawFrameRef.current) {
+                  drawFrameRef.current(frameIndexRef.current);
+                }
+             });
            };
-           return;
+           
+           // FALLBACK: Find the closest previous frame that IS complete to prevent canvas stutter/freezing
+           let fallbackIndex = safeIndex;
+           while (fallbackIndex > 0) {
+              fallbackIndex--;
+              if (currentFrames[fallbackIndex] && currentFrames[fallbackIndex].complete) {
+                 img = currentFrames[fallbackIndex];
+                 break;
+              }
+           }
+           
+           if (!img || !img.complete) return;
         }
 
         const cw = canvas.width;
